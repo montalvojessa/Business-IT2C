@@ -129,7 +129,7 @@ public class Employing {
         }
     }
     public void Un_hire(){
-        view();
+        viewhire();
         boolean exit = true;
         System.out.println("+----------------------------------------------------------------------------------------------------+");
         System.out.printf("|%-25s%-50s%-25s|\n","","**Un-Hire a Personel**","");
@@ -150,12 +150,19 @@ public class Employing {
                 System.out.print("|\tEnter ID: ");
             }
         }
+        
         while(exit){
             String stat = "UN-Hired";
-            String SQL = "UPDATE E_Employee SET E_Status Where E_Id = ?";
+            String SQL = "UPDATE E_Employee SET E_Status = ? Where E_Id = ?";
             conf.updateRecord(SQL, stat, id);
             exit = false;
         }
+    }
+    public void viewhire(){
+        String tbl_view = "SELECT * From E_Employee Where E_Status = 'Hired'";
+        String[] tbl_Headers = {"ID", "First Name", "Last Name", "Status"};
+        String[] tbl_Columns = {"E_Id", "E_Fname", "E_Lname", "E_Status"};
+        conf.viewRecords(tbl_view, tbl_Headers, tbl_Columns);
     }
     public void view(){
         String tbl_view = "SELECT * From E_Employee";
